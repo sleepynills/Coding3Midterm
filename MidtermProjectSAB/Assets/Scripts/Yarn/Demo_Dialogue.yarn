@@ -1,0 +1,131 @@
+﻿title:loadPhase
+---
+//when we declare new variable VSCode automatically designates a type, there's no need to hand-code a type.
+<<declare $dialogPhase = "">>
+<<declare $visitedYet = false>>
+<<dialogPhaseSetter NPC>>
+<<if $dialogPhase == "start">>
+<<jump Start>>
+<<elseif $dialogPhase == "quest_taken">>
+<<jump quest_taken>>
+<<elseif $dialogPhase == "quest_taken_return">>
+<<jump quest_taken_return>>
+<<elseif $dialogPhase == "repeat">>
+<<jump repeat>>
+<<elseif $dialogPhase == "repeat_return">>
+<<jump repeat_return>>
+<<elseif $dialogPhase == "quest_complete">>
+<<jump quest_complete>>
+<<elseif $dialogPhase == "quest_complete_return">>
+<<jump quest_complete_return>>
+<<else>>
+NPC: I don't know what to do. This is an error debug message. Fix your shit.
+<<endif>>
+===
+
+title: Start
+---
+<<set $visitedYet = true>>
+<<cam_move NPC_Cam_Rig "npc">>
+NPC: Hello there! I am Erling Haaland.
+NPC: Welcome to the Erling Haaland and Jude Bellingham house.
+NPC: Jude Bellingham is not here right now but that is okay.
+NPC: I am in the middle of setting up for his gabber night of fun.
+NPC: As a welcome back from his time playing for England.
+NPC: While you're here, I actually have a favor to ask of you.
+NPC: Can you help me?
+<<cam_move NPC_Cam_Rig "pc">>
+    ->I can help.
+        <<dialogPhaseGetter NPC "quest_taken">>
+        <<cam_move NPC_Cam_Rig "return">>
+        <<jump quest_taken>>
+    ->Not right now.
+        <<dialogPhaseGetter NPC "repeat">>
+        <<cam_move NPC_Cam_Rig "return">>
+===
+
+title: repeat
+---
+<<cam_move NPC_Cam_Rig "npc">>
+NPC: Can you help me?
+<<cam_move NPC_Cam_Rig "pc">>
+    -> Sure.
+        <<dialogPhaseGetter NPC "repeat">>
+        <<cam_move NPC_Cam_Rig "return">>
+        <<jump quest_taken>>
+    -> Not right now.
+        <<cam_move NPC_Cam_Rig "return">>
+===
+
+title: quest_taken
+---
+<<cam_move NPC_Cam_Rig "npc">>
+NPC: Ah this is great!
+NPC: I am hosting a huge night of gabber, as I said.
+NPC: But I am missing Joost Klein.
+NPC: I haven't heard from him and I am worried he got stuck somewhere.
+NPC: I need you to go find him for me.
+NPC: As I am stuck in this room and can't really leave like you can.
+<<cam_move NPC_Cam_Rig "pc">>
+    ->Sure.
+        <<dialogPhaseGetter NPC "quest_taken_return">>
+        <<cam_move NPC_Cam_Rig "return">>
+    ->Not right now.
+        <<dialogPhaseGetter NPC "repeat_return">>
+        <<cam_move NPC_Cam_Rig "return">>
+        <<jump repeat_return>>
+===
+
+title: repeat_return
+---
+<<cam_move NPC_Cam_Rig "npc">>
+NPC: Can you please just find Joost for me dude ughhhh.
+    -> Fine.
+        <<dialogPhaseGetter NPC "quest_taken_return">>
+        <<cam_move NPC_Cam_Rig "return">>
+===
+
+title: quest_taken_return
+---
+<<cam_move NPC_Cam_Rig "NPC">>
+NPC: Welcome back my little chudling! Did you find Joost Klein?
+<<cam_move NPC_Cam_Rig "pc">>
+    -> Nope.
+        <<cam_move NPC_Cam_Rig "return">>
+===
+
+title: quest_complete
+---
+<<cam_move NPC_Cam_Rig "npc">>
+<<if $visitedYet == false>>
+<<set $visitedYet to true>>
+NPC: Joost Klein is that you!
+NPC: I'm gonna take him off your hands.
+NPC: Thank you stranger.
+<<cam_move NPC_Cam_Rig "pc">>
+    -> ...Okay.
+        <<cam_move NPC_Cam_Rig "return">>
+<<endif>>
+
+<<if $visitedYet == true>>
+<<cam_move NPC_Cam_Rig "npc">>
+NPC: Joost Klein!
+NPC: You have found him!
+NPC: The gabber party is saved!
+NPC: Jude Bellingham will be so happy
+NPC: Thanks for bringing me the dutch guy.
+NPC: You've saved the Jude Bellingham Welcome Home Gabber Party!
+<<cam_move NPC_Cam_Rig "pc">>
+    -> Love you king.
+        <<cam_move NPC_Cam_Rig "return">>
+<<dialogPhaseGetter NPC "quest_complete_return">>
+<<endif>>
+===
+
+title: quest_complete_return
+---
+<<cam_move NPC_Cam_Rig "npc">>
+NPC: You've saved the Jude Bellingham Welcome Home Gabber Party!
+NPC: Thanks again friend.
+<<cam_move NPC_Cam_Rig "return">>
+===
