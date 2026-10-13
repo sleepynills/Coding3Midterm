@@ -46,7 +46,20 @@ public class boxes_Interact : MonoBehaviour
                     npcData.currentPhase = NPC_Data.dialogPhase.quest_complete;
                     canInteract = false;
                     Destroy(gameObject);
+                    setText("");
                 }
         }
     }
 }
+//     <<cam_move NPC_Cam_Rig "npc">>
+// <<if $visitedYet == false>>
+// //<<set $visitedYet to true>>
+// Erling Haaland: Joost Klein is that you!
+// Erling Haaland: I'm gonna take him off your hands.
+// Erling Haaland: Thank you stranger.
+// <<cam_move NPC_Cam_Rig "pc">>
+//     -> ...Okay.
+//         <<cam_move NPC_Cam_Rig "return">>
+// <<dialogPhaseGetter NPC "quest_complete_return">>
+// <<endif>>
+// 

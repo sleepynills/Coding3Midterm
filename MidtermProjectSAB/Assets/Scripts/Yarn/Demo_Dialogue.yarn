@@ -19,7 +19,7 @@
 <<elseif $dialogPhase == "quest_complete_return">>
 <<jump quest_complete_return>>
 <<else>>
-NPC: I don't know what to do. This is an error debug message. Fix your shit.
+Erling Haaland: I don't know what to do. This is an error debug message. Fix your shit.
 <<endif>>
 ===
 
@@ -27,13 +27,22 @@ title: Start
 ---
 <<set $visitedYet = true>>
 <<cam_move NPC_Cam_Rig "npc">>
-NPC: Hello there! I am Erling Haaland.
-NPC: Welcome to the Erling Haaland and Jude Bellingham house.
-NPC: Jude Bellingham is not here right now but that is okay.
-NPC: I am in the middle of setting up for his gabber night of fun.
-NPC: As a welcome back from his time playing for England.
-NPC: While you're here, I actually have a favor to ask of you.
-NPC: Can you help me?
+Erling Haaland: Hello there! I am Erling Haaland.
+Erling Haaland: Welcome to the Erling Haaland and Jude Bellingham house.
+Erling Haaland: Jude Bellingham is not here right now but that is okay.
+Erling Haaland: He is definitely in England with the boys.
+Erling Haaland: I miss him dearly.
+Erling Haaland: We are like family but more than family but not just bros we are more than bros..
+Erling Haaland: If that makes sense.
+<<cam_move NPC_Cam_Rig "pc">>
+    ->Makes sense to me.
+<<cam_move NPC_Cam_Rig "npc">>
+Erling Haaland: You must be wondering about the decorations.
+Erling Haaland: I am in the middle of setting up for Jude Bellingham's gabber night of fun.
+Erling Haaland: As a welcome back from his time playing for England.
+Erling Haaland: While you're here, I actually need you to help me with something important.
+Erling Haaland: Let's say... essential to gabber night of fun.
+Erling Haaland: Can you help me?
 <<cam_move NPC_Cam_Rig "pc">>
     ->I can help.
         <<dialogPhaseGetter NPC "quest_taken">>
@@ -47,7 +56,7 @@ NPC: Can you help me?
 title: repeat
 ---
 <<cam_move NPC_Cam_Rig "npc">>
-NPC: Can you help me?
+Erling Haaland: Can you help me?
 <<cam_move NPC_Cam_Rig "pc">>
     -> Sure.
         <<dialogPhaseGetter NPC "repeat">>
@@ -60,12 +69,29 @@ NPC: Can you help me?
 title: quest_taken
 ---
 <<cam_move NPC_Cam_Rig "npc">>
-NPC: Ah this is great!
-NPC: I am hosting a huge night of gabber, as I said.
-NPC: But I am missing Joost Klein.
-NPC: I haven't heard from him and I am worried he got stuck somewhere.
-NPC: I need you to go find him for me.
-NPC: As I am stuck in this room and can't really leave like you can.
+Erling Haaland: Ah this is great!
+Erling Haaland: I am hosting a huge night of gabber fun, as I said.
+Erling Haaland: But I am missing Joost Klein.
+Erling Haaland: You know, the dutch guy.
+Erling Haaland: The spirit of Netherlands itself.
+Erling Haaland: We cannot have gabber night of fun without THE Joost.
+Erling Haaland: I haven't heard from him and I am worried he got stuck somewhere.
+Erling Haaland: I need you to go find him for me.
+Erling Haaland: Make sure he is all in one piece.
+Erling Haaland: As I am stuck in this room and can't really leave like you can.
+<<cam_move NPC_Cam_Rig "pc">>
+    ->Where should I look for him?
+<<cam_move NPC_Cam_Rig "npc">>
+Erling Haaland: He might be in the weird maze outside the house.
+Erling Haaland: You know...
+Erling Haaland: The maze I made with Jude Bellingham.
+Erling Haaland: It's like we built a snowman together or something...
+Erling Haaland: But anyway-- pwetty pwease???
+<<cam_move NPC_Cam_Rig "pc">>
+    -> Well.. what's in it for me?
+<<cam_move NPC_Cam_Rig "npc">>
+Erling Haaland: If you bring him back to me I'll give you a VIP ticket.
+Erling Haaland: To the gabber party of course.
 <<cam_move NPC_Cam_Rig "pc">>
     ->Sure.
         <<dialogPhaseGetter NPC "quest_taken_return">>
@@ -79,7 +105,7 @@ NPC: As I am stuck in this room and can't really leave like you can.
 title: repeat_return
 ---
 <<cam_move NPC_Cam_Rig "npc">>
-NPC: Can you please just find Joost for me dude ughhhh.
+Erling Haaland: Can you please just find Joost for me dude ughhhh.
     -> Fine.
         <<dialogPhaseGetter NPC "quest_taken_return">>
         <<cam_move NPC_Cam_Rig "return">>
@@ -88,8 +114,7 @@ NPC: Can you please just find Joost for me dude ughhhh.
 title: quest_taken_return
 ---
 <<cam_move NPC_Cam_Rig "NPC">>
-NPC: Welcome back my little chudling! Did you find Joost Klein?
-<<cam_move NPC_Cam_Rig "pc">>
+Erling Haaland: Welcome back my little chudling! Did you find Joost Klein?
     -> Nope.
         <<cam_move NPC_Cam_Rig "return">>
 ===
@@ -97,35 +122,42 @@ NPC: Welcome back my little chudling! Did you find Joost Klein?
 title: quest_complete
 ---
 <<cam_move NPC_Cam_Rig "npc">>
-<<if $visitedYet == false>>
-<<set $visitedYet to true>>
-NPC: Joost Klein is that you!
-NPC: I'm gonna take him off your hands.
-NPC: Thank you stranger.
+Erling Haaland: Joost Klein!
+Erling Haaland: You have found him!
+Erling Haaland: The gabber party is saved!
+Erling Haaland: Jude Bellingham will be so happy
+Erling Haaland: Thanks for bringing me the dutch guy.
 <<cam_move NPC_Cam_Rig "pc">>
-    -> ...Okay.
-        <<cam_move NPC_Cam_Rig "return">>
-<<endif>>
-
-<<if $visitedYet == true>>
+    -> Of course. I'm happy to help hehe
 <<cam_move NPC_Cam_Rig "npc">>
-NPC: Joost Klein!
-NPC: You have found him!
-NPC: The gabber party is saved!
-NPC: Jude Bellingham will be so happy
-NPC: Thanks for bringing me the dutch guy.
-NPC: You've saved the Jude Bellingham Welcome Home Gabber Party!
+Erling Haaland: You're amazeballs.
+Erling Haaland: As promised -- your VIP ticket.
+<<cam_move NPC_Cam_Rig "pc">>
+    -> *grabs crisp yellow VIP ticket*
+<<cam_move NPC_Cam_Rig "npc">>
+Erling Haaland: There will be snacks, drinks..
+Erling Haaland: ...
+Erling Haaland: More snacks.
+Erling Haaland: As you can see me and Jude Bellingham only need three things.
+Erling Haaland: Soccer.
+Erling Haaland: Snacks and drinks.
+Erling Haaland: And dutch men.
+Erling Haaland: Technically that's four things but .. WHATEVER BRO. 
+Erling Haaland: Enjoy the party 
+Erling Haaland: Pookie.
 <<cam_move NPC_Cam_Rig "pc">>
     -> Love you king.
         <<cam_move NPC_Cam_Rig "return">>
 <<dialogPhaseGetter NPC "quest_complete_return">>
-<<endif>>
 ===
 
 title: quest_complete_return
 ---
 <<cam_move NPC_Cam_Rig "npc">>
-NPC: You've saved the Jude Bellingham Welcome Home Gabber Party!
-NPC: Thanks again friend.
+Erling Haaland: You've saved the Jude Bellingham Welcome Home Gabber Party!
+Erling Haaland: Thanks again friend.
+Erling Haaland: Fruit punch is on the table.
+Erling Haaland: Or was.
+Erling Haaland: IDK who took it.
 <<cam_move NPC_Cam_Rig "return">>
 ===
